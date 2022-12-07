@@ -1,10 +1,10 @@
 import React, {useState} from 'react' 
 import * as Tone from 'tone';
+import 'oscillator.css'
 const polyOscillator : Tone.PolySynth = new Tone.PolySynth();
 const synth = polyOscillator.toDestination();
 
 export default function Oscillator() {
-  
   
     return (
         <div>
@@ -90,3 +90,4 @@ const setRelease = (event : React.ChangeEvent<HTMLInputElement>) => {
         }
     } )
 }
+
