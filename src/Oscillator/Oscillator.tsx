@@ -1,11 +1,12 @@
 import React, {useState} from 'react' 
+import ReactSlider from 'react-slider';
 import * as Tone from 'tone';
-import 'oscillator.css'
+import './oscillator.css'
+
 const polyOscillator : Tone.PolySynth = new Tone.PolySynth();
 const synth = polyOscillator.toDestination();
 
-export default function Oscillator() {
-  
+export default function Oscillator(props: any) {
     return (
         <div>
             <button onClick={playSound}>Play</button>
@@ -16,19 +17,23 @@ export default function Oscillator() {
                 <option value="square">Square</option>
                 <option value="sawtooth">Sawtooth</option>
             </select>
-            <form>
-                <label>Attack:
-                <input onChange={setAttack} type="range"></input>
-                </label>
-                <label>Decay:
+            <form className="envelope">
+                <div>
+                    <input onChange={setAttack} type="range" ></input>
+                    <label>Attack:</label>
+                </div>
+                <div>
                     <input onChange={setDecay} type="range"></input>
-                </label>
-                <label>Sustain:
+                    <label>Decay</label>
+                </div>
+                <div>
                     <input onChange={setSustain} type="range" min='0' max='1' step='0.001'></input>
-                </label>
-                <label>Release:
-                    <input onChange={setRelease} type="range"></input>
-                </label>
+                    <label>Sustain</label>
+                </div>
+                <div>
+                    <input onChange={setRelease} type="range" min='0' max="30" step='0.01'></input>
+                    <label>Release</label>
+                </div>
             </form>
         </div>
     )
@@ -36,6 +41,8 @@ export default function Oscillator() {
 
 const playSound = () => {
     synth.triggerAttack(["C4", "E4", "A4"])
+    console.log(synth.get())
+  
     
 }
 

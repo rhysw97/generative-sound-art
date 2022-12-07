@@ -1,0 +1,19 @@
+.envelope {
+    display: flex;
+    flex-direction: row;
+}
+
+input[type="range"] {
+    fill: red;
+    width:100px;
+    transform: rotate(270deg);
+}
+
+.envelope div {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+
