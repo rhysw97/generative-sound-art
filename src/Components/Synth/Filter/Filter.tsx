@@ -31,10 +31,6 @@ export default function Filter(props: any) {
 
         oscFilter.frequency.value = event.target.value 
     }
-
-   
-
-  
     
     return(
         <div>
@@ -51,9 +47,9 @@ export default function Filter(props: any) {
 
             <form className="envelope">
             <div>
-                    <input onChange={setCutOff} type="range" min="0" max="250000" step="1" ></input>
-                    <label>Frequency CutOff</label>
-                </div>
+                <input onChange={setCutOff} type="range" min="0" max="25000" step="1" ></input>
+                <label>Frequency CutOff</label>
+            </div>
                
              
             </form>

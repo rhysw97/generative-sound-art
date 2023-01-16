@@ -12,10 +12,8 @@ function App() {
   return (
     
     <div className="App">
-     
-      <Oscillator></Oscillator>
-  
       <ReactP5Wrapper sketch={sketch} />
+      <Oscillator></Oscillator>
     
     </div>
   );
