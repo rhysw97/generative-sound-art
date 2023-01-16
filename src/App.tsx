@@ -5,6 +5,7 @@ import Oscillator from './Components/Synth/Oscillator/Oscillator';
 import './App.css';
 import {ReactP5Wrapper} from 'react-p5-wrapper'
 import sketch from './Components/Sketch/Sketch';
+import Sequencer from './Components/Synth/Sequencer/sequencer';
 
 const synth: Tone.PolySynth = new Tone.PolySynth();
 export const SynthContext = createContext(synth);
@@ -14,6 +15,7 @@ function App() {
     <div className="App">
       <ReactP5Wrapper sketch={sketch} />
       <Oscillator></Oscillator>
+      <Sequencer></Sequencer>
     
     </div>
   );
