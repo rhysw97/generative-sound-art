@@ -4,12 +4,12 @@ import "./step.css"
 export default function Step() {
     const [playing, setPlaying] = useState(false)
     const colour = "red";
-    let opacity = 0;
+    const [opacity, setOpacity] = useState(0);
     const toggleStep = () => {
         if(playing) {
-            opacity = 1
+            setOpacity(1) 
         } else {
-            opacity = 0.8
+            setOpacity(0)
         }
         console.log(playing)
         setPlaying(!playing)
