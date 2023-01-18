@@ -1,9 +1,9 @@
 import React, {useState} from "react";
+import "./step.css"
 
 export default function Step() {
     const [playing, setPlaying] = useState(false)
-    
-    const colour = "purple";
+    const colour = "red";
     let opacity = 0;
     const toggleStep = () => {
         if(playing) {
@@ -11,16 +11,13 @@ export default function Step() {
         } else {
             opacity = 0.8
         }
-
+        console.log(playing)
         setPlaying(!playing)
     }
 
     return (
-        <div onClick={toggleStep} style={{
-            backgroundColor: colour, 
-            opacity: opacity,
-            width: "500px",
-            height: "500px"
-        }}></div>
+        <div>
+            <div className="step" onClick={toggleStep} style={{opacity: opacity}}></div>
+        </div>
     )
 }

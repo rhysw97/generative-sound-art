@@ -48,12 +48,7 @@ export default function Sequencer(props: any) {
         </div>
     )
 }
-
-
-
-
-Tone.Transport.start();
-Tone.Transport.stop();
+ 
 //Tone.Transport.bpm.value; //= parseFloat(e.target.value);
 
 

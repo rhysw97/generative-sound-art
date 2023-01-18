@@ -12,7 +12,6 @@ const synth: Tone.PolySynth = new Tone.PolySynth();
 export const SynthContext = createContext(synth);
 function App() {
   return (
-    
     <div className="App">
       <ReactP5Wrapper sketch={sketch} />
       <Oscillator></Oscillator>
