@@ -1,17 +1,18 @@
 import React, {useState} from "react";
 
 export default function Step() {
-    let on = false
+    const [playing, setPlaying] = useState(false)
+    
     const colour = "purple";
     let opacity = 0;
     const toggleStep = () => {
-        if(on) {
+        if(playing) {
             opacity = 1
         } else {
             opacity = 0.8
         }
 
-        on = !on
+        setPlaying(!playing)
     }
 
     return (
