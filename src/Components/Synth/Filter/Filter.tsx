@@ -2,7 +2,6 @@ import * as Tone from "tone"
 import { SynthContext } from '../../../App';
 import {useContext} from 'react'
 
-
 export default function Filter(props: any) {
     
     const oscFilter = new Tone.Filter().toDestination();
@@ -56,4 +55,3 @@ export default function Filter(props: any) {
         </div>
     )
 }
-

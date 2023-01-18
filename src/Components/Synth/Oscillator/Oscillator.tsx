@@ -5,10 +5,6 @@ import './oscillator.css'
 import { SynthContext } from '../../../App';
 import Filter from '../Filter/Filter'
 
-
-
-
-
 export default function Oscillator(props: any) {
     const synth = useContext(SynthContext)
     
