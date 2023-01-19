@@ -8,24 +8,34 @@ interface RowProps {
     updateSequence: Function
 }
 
+interface StepsObject {
+    step: boolean,
+    index: number
+}
+
 
 
 export default function Row(props: RowProps) {
-    const stepActiveRef = useRef();
-    const [activeSteps, setActiveSteps] = useState([])
-   const steps = []
+    const [activeSteps , setActiveSteps] = useState<any[]>([])
+    const steps: any[] = []
    
-   for(let i = 0; i < props.rowLength; i++) {
-    steps.push(<Step ref={setActiveSteps} index={i} width="50px" height="50px"></Step>)
-    setActiveSteps(activeSteps=> [activeSteps, false])
+    for(let i = 0; i < props.rowLength; i++) {
+        const tempSteps: any[] = activeSteps
+        tempSteps.push({step: false, index:i})
+        setActiveSteps(tempSteps)
+    }
 
-   }
+    function updateActiveStep(index: number) {
+        const tempSteps = activeSteps;
+        tempSteps[index].step = !tempSteps[index].step
+    }
+
 
    
 //want to render 16 steps 
     return(
         <div className="grid-row" id={props.note}>
-            {steps}
+            {activeSteps.map((step, index) => <Step active={step} index={index} updateActiveStep={updateActiveStep} />)}
         </div>
     )
 }

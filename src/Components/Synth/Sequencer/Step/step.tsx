@@ -5,7 +5,8 @@ interface StepProps {
     height: string,
     width: string,
     index: number,
-    ref: any
+    ref: Function,
+    active: boolean
 }
 
 export default function Step(props: StepProps) {
