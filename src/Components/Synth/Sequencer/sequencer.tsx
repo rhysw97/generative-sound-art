@@ -1,56 +1,55 @@
-import React, {useContext, useState} from 'react' 
-import ReactSlider from 'react-slider';
-import * as Tone from 'tone';
+
 import './sequencer.css'
-import { SynthContext } from '../../../App';
+import Row from './Row/row';
 
+export default function Sequencer() {
+    const notes: string[] = ["C4", "D4", "F4", "G4", "A4", "C5"]
+    const grid: any[] = [];
 
-export default function Sequencer(props: any) {
-    const synth = useContext(SynthContext)
-    const sequence = ["C4", ["E4", "D4"], "G4", ["A4", "G4"]]
-    const grid: {rowName: string, steps:any[]}[]= [];
-    const playSequence = () => {
-        const seq = new Tone.Sequence((time, note) => {
-            synth.triggerAttackRelease(note, 0.1, time);
-            // subdivisions are given as subarrays
-        }, sequence).start(0);
-        Tone.Transport.start();
-    }
-    const stopSequence = () => {
-        Tone.Transport.stop()
+    const updateSequence = () => {
+        console.log('updated')
     }
 
-    const createSequencer = (notes:string[]) => {
-        notes = ["C4", "D4", "E4", "F4", "G4", "A4", "B4", "C5"]
-        notes.forEach(note => {
-            const row = []
-            for(let i = 0; i < 16; i++) {
-                row.push(
-                    <div className="step">
-                        <div className="isActive"></div>
-                    </div>
-                )
-            }
-            grid.push({
-                rowName: note,
-                steps: row
-            })
-        })
-        
-    }
+    notes.forEach(note => {
+        grid.push(<Row note={note} rowLength={16} updateSequence={updateSequence}></Row>)
+    })
+
+    //what I need is an array for each row containing true or false based on 
     return (
-        <div>
-            <div>
-            
-            </div>
-            <div onClick={playSequence}>Play Sequence</div>
-            <div onClick={stopSequence}>Stop Sequence</div>
+        <div className="grid-container" >
+            {grid}
         </div>
     )
 }
- 
-//Tone.Transport.bpm.value; //= parseFloat(e.target.value);
 
+/*
+const synths = [
+    new Tone.Synth(),
+    new Tone.Synth(),
+    new Tone.Synth()
+]
 
+synths[0].oscillator.type = 'triangle'
+synths[1].oscillator.type = 'sine'
+synths[2].oscillator.type = 'sawtooth'
 
+synths.forEach(synth => synth.toMaster());
 
+const rows = document.getElementsByClassName('row');
+const notes = [ 'G5', 'E4', 'C3']
+let index = 0;
+
+Tone.Transport.scheduleRepeat(repeat, '8n');
+Tone.Transport.start();
+
+function repeat(time) {
+    let step = index % 8
+    for (let i = 0; i < rows.length; i++) {
+        let synth = synths[i]
+        let row = rows[i];
+        let input = row.querySelector(`input:nth-child(${step + 1})`)
+        console.log(input)
+        if (input.checked) synth.triggerAttackRelease(note, '8n', time)
+    }
+    index++
+}*/

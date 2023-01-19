@@ -1,23 +1,33 @@
 import React, {useState} from "react";
 import "./step.css"
 
-export default function Step() {
-    const [playing, setPlaying] = useState(false)
-    const colour = "red";
-    const [opacity, setOpacity] = useState(0);
+interface StepProps {
+    height: string,
+    width: string,
+}
+
+export default function Step(props: StepProps) {
+    const [active, setActive] = useState(true)
+
+    const [colour, setColour] = useState('white');
     const toggleStep = () => {
-        if(playing) {
-            setOpacity(1) 
+        
+        if(active) {
+            setColour('purple')
         } else {
-            setOpacity(0)
+            setColour('white')
         }
-        console.log(playing)
-        setPlaying(!playing)
+        setActive(!active)
+        console.log(active)
     }
 
     return (
         <div>
-            <div className="step" onClick={toggleStep} style={{opacity: opacity}}></div>
+            <div className="step" onClick={toggleStep} style={{
+                height: props.height,
+                width: props.width,
+                backgroundColor: colour,
+            }}></div>
         </div>
     )
 }
