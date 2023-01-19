@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useState, forwardRef, useImperativeHandle} from "react";
 import "./step.css"
 
 interface StepProps {
     height: string,
     width: string,
+    index: number,
+    ref: any
 }
 
 export default function Step(props: StepProps) {

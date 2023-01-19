@@ -1,6 +1,6 @@
-
+import React, {useRef} from 'react';
 import './sequencer.css'
-import Row from './Row/row';
+import Row from './row/row';
 
 export default function Sequencer() {
     const notes: string[] = ["C4", "D4", "F4", "G4", "A4", "C5"]
