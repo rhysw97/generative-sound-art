@@ -21,8 +21,8 @@ export default function Row(props: RowProps) {
             {length: props.rowLength}, 
             (index)=> ({active: false, index: index})
         )
-    
         setActiveSteps(steps)
+        props.updateSequence(steps)
     }, [])
  
    
