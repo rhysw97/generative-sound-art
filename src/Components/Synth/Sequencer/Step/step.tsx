@@ -11,13 +11,11 @@ interface StepProps {
 export default function Step(props: StepProps) {
     
     const colour = props.active ? 'purple' : 'white'
-    console.log(props.index + ' ' + props.active)
     
     return (
         <div>
             <div className="step" onClick={() => {
-                console.log(props.active)
-                props.onClick(props.active, props.index)   
+                props.onClick(!props.active, props.index)   
             }} style={{
                 height: props.height,
                 width: props.width,

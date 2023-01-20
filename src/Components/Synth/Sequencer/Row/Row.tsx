@@ -1,5 +1,6 @@
 import React, {useRef, useState, useEffect} from 'react';
 import Step from '../step/step'
+import * as Tone from 'tone'
 import "./row.css"
 
 interface RowProps {
@@ -12,15 +13,23 @@ interface StepsObject {
     index: number
 }
 
-
-
 export default function Row(props: RowProps) {
     const [activeSteps , setActiveSteps] = useState<any[]>([])
 
-useEffect(()=>{
-  const steps=Array.from({length: props.rowLength}, (active, index)=>({active: false, index: index}))
-  setActiveSteps(steps)
-}, [])
+    useEffect(()=>{
+        const steps=Array.from(
+            {length: props.rowLength}, 
+            (index)=> ({active: false, index: index})
+        )
+        setActiveSteps(steps)
+       
+    }, [])
+ 
+    const repeat = () => {
+     
+    }
+    Tone.Transport.scheduleRepeat(repeat, '16n')
+   
 
     return(
         <div className="grid-row" id={props.note}>
@@ -31,9 +40,9 @@ useEffect(()=>{
                 index={index}
                 key={index} 
                 onClick={(active: boolean, index: number) => {
-                    console.log(active)
+                    console.log(`${props.note} ${index} ${active}`)
                     const tempSteps: any[] = [...activeSteps]
-                    tempSteps[index].active = !active;
+                    tempSteps[index].active = active;
                     setActiveSteps(tempSteps)
                 }} 
             />)}

@@ -33,7 +33,6 @@ export default function sketch (p) {
              
     
             let end = start + buffer.length;
-            console.log(end)
             for (let i =start; i < end; i++) {
                 let x1 = p.map(i - 1, start, end, 0, p.width)
                 let y1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
