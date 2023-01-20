@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import Step from '../step/step'
 import "./row.css"
 
@@ -16,32 +16,27 @@ interface StepsObject {
 
 export default function Row(props: RowProps) {
     const [activeSteps , setActiveSteps] = useState<any[]>([])
-    const steps: any[] = []
-   
-    for(let i = 0; i < props.rowLength; i++) {
-        const tempSteps: any[] = activeSteps
-        tempSteps.push({step: false, index:i})
-        setActiveSteps(tempSteps)
-    }
-    console.log(activeSteps)
-/*
 
-*/
-   
-//want to render 16 steps 
+useEffect(()=>{
+  const steps=Array.from({length: props.rowLength}, (active, index)=>({active: false, index: index}))
+  setActiveSteps(steps)
+}, [])
+
     return(
         <div className="grid-row" id={props.note}>
-            {activeSteps.map((step, index) => <Step
+            {activeSteps.map((object, index) => <Step
                 width="50px"
                 height="50px" 
-                active={step} 
-                index={index} 
-                onClick={(value: boolean, index: number) => {
-                    const tempSteps: any[] = activeSteps
-                    tempSteps[index] = value;
+                active={object.active} 
+                index={index}
+                key={index} 
+                onClick={(active: boolean, index: number) => {
+                    console.log(active)
+                    const tempSteps: any[] = [...activeSteps]
+                    tempSteps[index].active = !active;
                     setActiveSteps(tempSteps)
                 }} 
             />)}
-        </div>
+       </div>
     )
 }
