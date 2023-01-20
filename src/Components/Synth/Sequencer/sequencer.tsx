@@ -6,12 +6,9 @@ export default function Sequencer() {
     const notes: string[] = ["C4", "D4", "F4", "G4", "A4", "C5"]
     const grid: any[] = [];
 
-    const updateSequence = () => {
-        console.log('updated')
-    }
-
+  
     notes.forEach(note => {
-        grid.push(<Row note={note} rowLength={16} updateSequence={updateSequence}></Row>)
+        grid.push(<Row note={note} rowLength={16}></Row>)
     })
 
     //what I need is an array for each row containing true or false based on 

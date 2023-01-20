@@ -5,7 +5,6 @@ import "./row.css"
 interface RowProps {
     note: string
     rowLength: number
-    updateSequence: Function
 }
 
 interface StepsObject {
@@ -24,18 +23,25 @@ export default function Row(props: RowProps) {
         tempSteps.push({step: false, index:i})
         setActiveSteps(tempSteps)
     }
+    console.log(activeSteps)
+/*
 
-    function updateActiveStep(index: number) {
-        const tempSteps = activeSteps;
-        tempSteps[index].step = !tempSteps[index].step
-    }
-
-
+*/
    
 //want to render 16 steps 
     return(
         <div className="grid-row" id={props.note}>
-            {activeSteps.map((step, index) => <Step active={step} index={index} updateActiveStep={updateActiveStep} />)}
+            {activeSteps.map((step, index) => <Step
+                width="50px"
+                height="50px" 
+                active={step} 
+                index={index} 
+                onClick={(value: boolean, index: number) => {
+                    const tempSteps: any[] = activeSteps
+                    tempSteps[index] = value;
+                    setActiveSteps(tempSteps)
+                }} 
+            />)}
         </div>
     )
 }
