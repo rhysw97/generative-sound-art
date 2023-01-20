@@ -1,5 +1,5 @@
 import * as Tone from "tone"
-import { SynthContext } from '../../../App';
+import { SynthContext, SequencerSynthsContext } from '../../../App';
 import {useContext} from 'react'
 
 export default function Filter(props: any) {
@@ -7,7 +7,8 @@ export default function Filter(props: any) {
     const oscFilter = new Tone.Filter().toDestination();
     oscFilter.debug = true;
     const synth = useContext(SynthContext).connect(oscFilter)
-
+    const sequencerSynths = useContext(SequencerSynthsContext)
+    sequencerSynths.forEach(sequencerSynth => sequencerSynth.connect(oscFilter))
     const setFilterType = (event : React.ChangeEvent<HTMLSelectElement>) => {
         const { value } = event.target;
         switch(value) {

@@ -2,11 +2,13 @@ import React, {useContext, useState} from 'react'
 import ReactSlider from 'react-slider';
 import * as Tone from 'tone';
 import './oscillator.css'
-import { SynthContext } from '../../../App';
+import { SynthContext, SequencerSynthsContext } from '../../../App';
 import Filter from '../Filter/Filter'
+
 
 export default function Oscillator(props: any) {
     const synth = useContext(SynthContext)
+    const sequencerSynths = useContext(SequencerSynthsContext)
     
     const playSound = () => {
         synth.triggerAttack(["C4", "E4", "A4"])
@@ -29,7 +31,15 @@ export default function Oscillator(props: any) {
                         type: value
                     }
                 })
-                break;
+
+                sequencerSynths.forEach(sequencerSynth => {
+                    sequencerSynth.set({
+                        oscillator: {
+                            type: value
+                        }
+                    })
+                })
+            break;
         }
     }
 
@@ -39,6 +49,14 @@ export default function Oscillator(props: any) {
                 attack: event.target.value
             }
         } )
+
+        sequencerSynths.forEach(sequencerSynth => {
+            sequencerSynth.set({
+                envelope: {
+                    attack: event.target.value
+                }
+            })
+        })
     }
 
     const setDecay = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -47,6 +65,14 @@ export default function Oscillator(props: any) {
                 decay: event.target.value
             }
         } )
+
+        sequencerSynths.forEach(sequencerSynth => {
+            sequencerSynth.set({
+                envelope: {
+                    decay: event.target.value
+                }
+            })
+        })
     }
 
     const setSustain = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +81,14 @@ export default function Oscillator(props: any) {
                 sustain: Number(event.target.value)
             }
         } )
+
+        sequencerSynths.forEach(sequencerSynth => {
+            sequencerSynth.set({
+                envelope: {
+                    sustain: Number(event.target.value)
+                }
+            })
+        })
     }
 
     const setRelease = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -63,6 +97,14 @@ export default function Oscillator(props: any) {
                 release: event.target.value
             }
         } )
+
+        sequencerSynths.forEach(sequencerSynth => {
+            sequencerSynth.set({
+                envelope: {
+                    release: event.target.value
+                }
+            })
+        })
     }
 
     return (

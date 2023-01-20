@@ -1,34 +1,30 @@
-import React, {useRef, useState, useEffect} from 'react';
+import React, {useContext, useState, useEffect} from 'react';
 import Step from '../step/step'
 import * as Tone from 'tone'
+
 import "./row.css"
 
 interface RowProps {
     note: string
     rowLength: number
-}
-
-interface StepsObject {
-    step: boolean,
+    synth: any
+    updateSequence: any
     index: number
 }
 
 export default function Row(props: RowProps) {
     const [activeSteps , setActiveSteps] = useState<any[]>([])
+    
 
     useEffect(()=>{
         const steps=Array.from(
             {length: props.rowLength}, 
             (index)=> ({active: false, index: index})
         )
+    
         setActiveSteps(steps)
-       
     }, [])
  
-    const repeat = () => {
-     
-    }
-    Tone.Transport.scheduleRepeat(repeat, '16n')
    
 
     return(
@@ -44,6 +40,7 @@ export default function Row(props: RowProps) {
                     const tempSteps: any[] = [...activeSteps]
                     tempSteps[index].active = active;
                     setActiveSteps(tempSteps)
+
                 }} 
             />)}
        </div>

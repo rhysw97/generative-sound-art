@@ -9,6 +9,11 @@ import Sequencer from './Components/Synth/Sequencer/sequencer';
 
 
 const synth: Tone.PolySynth = new Tone.PolySynth();
+const  sequencerSynths = []
+for(let i = 0; i < 5; i++) {
+  sequencerSynths.push(new Tone.PolySynth());
+}
+export const SequencerSynthsContext = createContext(sequencerSynths)
 export const SynthContext = createContext(synth);
 function App() {
   return (
