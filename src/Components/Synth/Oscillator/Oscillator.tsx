@@ -106,6 +106,8 @@ export default function Oscillator(props: any) {
         })
     }
 
+    
+
     return (
         <div>
             <button onClick={playSound}>Play</button>
@@ -117,11 +119,6 @@ export default function Oscillator(props: any) {
                 <option value="sawtooth">Sawtooth</option>
             </select>
             <form className="envelope">
-                <ReactSlider
-                    className="horizontal-slider"
-                    thumbClassName="example-thumb"
-                    trackClassName="example-track"
-                />
                 <div>
                     <input onChange={setAttack} type="range" ></input>
                     <label>Attack:</label>
