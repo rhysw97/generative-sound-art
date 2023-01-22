@@ -1,71 +1,78 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState, useRef} from 'react';
 import './sequencer.css'
-import Row from './row/row';
+import Step from './step/step';
 import * as Tone from 'tone'
 import { SequencerSynthsContext } from '../../../App';
+import { notEqual, notStrictEqual } from 'assert';
 
-export default function Sequencer() {
-    const notes: string[] = ["C4", "D4", "F4", "G4", "A4", "C5"]
-    const sequencerSynths = useContext(SequencerSynthsContext) 
-    const [sequence, setSequence] = useState<any[]>([])
+interface SequencerProps {
+    sequenceLength: number
+    notes: string[]
+}
+export default function Sequencer(props: SequencerProps) {
   
+    const sequencerSynths = useContext(SequencerSynthsContext) 
+    const [sequence, setSequence] = useState([])
+    const currentStep = useRef(0);
     useEffect(() => {
-        const rowState=Array.from(
-            {length: notes.length}, 
-            (index)=> ([])
-        )
-        setSequence(rowState)
-       
-    }, [])
-
-   const repeat = (time: any) => {
+        const grid: any  = []
+        props.notes.forEach(note => {
+            const row = []
+            for(let i = 0; i < props.sequenceLength; i++) {
+                row.push({index: i, active: false})
+            }
+            grid.push(row)
+        })
+        setSequence(grid)
+        currentStep.current = 0;
+    },[])
     
+    const repeat = (time: any) => {
+        let step = currentStep.current % props.sequenceLength
         for(let i = 0; i < sequence.length; i++) {
             let synth = sequencerSynths[i];
-            let note = notes [i];
-            let row = sequence[i]
-            row.forEach((step: any) => {
-                if(step.active) {
-                    synth.triggerAttackRelease(note, '16n', time)
-                }
-            })
-            
-/*  
-            
-                let synth = synths[i]
-                let note = notes[i]
-                let row = rows[i];
-                let input = row.querySelector(`input:nth-child(${step + 1})`)
-                console.log(input)
-                if (input.checked) synth.triggerAttackRelease(note, '8n', time)
+            let note = props.notes[i];
+            let row: any[] = sequence[i]
+            console.log(row[step].active)
+            if(row[step].active) {
+                synth.triggerAttackRelease(note, '16n', time)
             }
-            /*if(activeSteps[i].active === true) {
-                props.synth.triggerAttackRelease(props.note, '1n', time)
-            }*/
         }
+        currentStep.current ++;
     }
-    
-    Tone.Transport.scheduleRepeat(repeat, '1n')
-   
+
     return (
-        <div>
-            <p id="playButton" onClick={() => Tone.Transport.start()}>play</p>
-            <div className="grid-container" >
-                {sequence.map((object, index) => <Row
-                    key={index}
-                    note={notes[index]}
-                    rowLength={16}
-                    synth={sequencerSynths[index]}
-                    index = {index}
-                    updateSequence ={(activeSteps: any[]) => {
-                        const tempSequence: any[] = [...sequence]
-                        tempSequence.push(activeSteps)
-                        setSequence(tempSequence)
-                    }}
-                />)}
-              
+        <div className="sequencer">
+            <div className="sequencer-controls">
+                <p id="playButton" onClick={() => {
+                    Tone.Transport.start()
+                    Tone.Transport.bpm.value = 80;
+                    Tone.Transport.scheduleRepeat(repeat, '16n')
+                }}>play</p>
+                <p id="stopButton" onClick={() => Tone.Transport.stop()}>stop</p>
             </div>
-            
+
+            <div className="grid-container">
+                {sequence.map((array: any, outerIndex: number) => <div className='grid-row' key={outerIndex}>
+                    {array.map((object: any, innerIndex: number) => <Step
+                        key={innerIndex}
+                        height='50px'
+                        width='50px'
+                        position={[outerIndex, innerIndex]}
+                        active={object.active}
+                        onClick={(active: boolean, position: any) => {
+                            const tempSequence: any = [...sequence];
+                            tempSequence[position[0]][position[1]] = {index: position[1] ,active: active }
+                            setSequence(tempSequence)
+
+                            console.log(sequence)
+                        }}
+                    />)}
+                </div>)}
+            </div>
         </div>
     )
 }
+   
+
+

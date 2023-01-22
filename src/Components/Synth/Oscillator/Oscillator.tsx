@@ -12,7 +12,6 @@ export default function Oscillator(props: any) {
     
     const playSound = () => {
         synth.triggerAttack(["C4", "E4", "A4"])
-        console.log(synth.get())    
     }
 
     const stopSound = () => {
@@ -118,6 +117,11 @@ export default function Oscillator(props: any) {
                 <option value="sawtooth">Sawtooth</option>
             </select>
             <form className="envelope">
+                <ReactSlider
+                    className="horizontal-slider"
+                    thumbClassName="example-thumb"
+                    trackClassName="example-track"
+                />
                 <div>
                     <input onChange={setAttack} type="range" ></input>
                     <label>Attack:</label>

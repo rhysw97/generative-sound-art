@@ -3,7 +3,7 @@ import "./step.css"
 interface StepProps {
     height: string
     width: string
-    index: number
+    position: any
     onClick: Function
     active: boolean
 }
@@ -15,7 +15,7 @@ export default function Step(props: StepProps) {
     return (
         <div>
             <div className="step" onClick={() => {
-                props.onClick(!props.active, props.index)   
+                props.onClick(!props.active, props.position)   
             }} style={{
                 height: props.height,
                 width: props.width,

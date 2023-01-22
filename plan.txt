@@ -1,6 +1,12 @@
 Sequencer
 
-needed to be 16 steps with 5 rows
-each row has a note.
-note will be played if clicked onClick
-sequencer will be a grid with lots of smaller squares which light up once clicked
+what I need to do:
+
+1. Update UI
+2. make sketch interactive
+3. add instructions
+4. Fix Sequencer
+
+5. Film documentation
+6. edit documentation
+7.add comments
