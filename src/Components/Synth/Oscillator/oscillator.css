@@ -1,17 +1,33 @@
 .options {
     display: flex;
     justify-content: space-between;
+    margin: 50px;
+
 }
 
+/*Waveform*/
 .waveform-container {
-    width: 100%;
+    width: 50%;
+    background-color: rgb(66, 66, 66);
 }
+
+.waveform-options {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  text-align: start;
+
+}
+
+.waveform-options div {
+  flex-basis: 50%;
+}
+
 
 /*Envelope*/
 .envelope-container {
     background-color: rgb(66, 66, 66);
     width: 50%;
-    margin-bottom: 50px;
     display: flex;
     flex-direction: column;
 }

@@ -1,9 +1,8 @@
 import React, {useContext, useEffect, useState, useRef} from 'react';
 import './sequencer.css'
 import Step from './step/step';
-import * as Tone from 'tone'
+import * as Tone from 'tone';
 import { SequencerSynthsContext } from '../../../App';
-import { notEqual, notStrictEqual } from 'assert';
 
 interface SequencerProps {
     sequenceLength: number
@@ -38,7 +37,7 @@ export default function Sequencer(props: SequencerProps) {
                 synth.triggerAttackRelease(note, '16n', time)
             }
         }
-        currentStep.current ++;
+        currentStep.current++;
     }
 
     return (
@@ -73,6 +72,3 @@ export default function Sequencer(props: SequencerProps) {
         </div>
     )
 }
-   
-
-
