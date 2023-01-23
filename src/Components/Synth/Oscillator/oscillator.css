@@ -19,10 +19,37 @@
 
 }
 
+.label {
+    width: 50px;
+    height: 50px;
+}
 .waveform-options div {
   flex-basis: 50%;
 }
+.sine-shape {
+    width: 50px;
+    height: 50px;
+    border-radius: 360px;
+    background-color: white;
+}
 
+.triangle-shape {
+    border-bottom: 50px solid white;
+    border-right: 30px solid transparent;
+    border-left: 30px solid transparent;
+}
+
+.square-shape {
+    width: 50px;
+    height: 50px;
+    background-color: white;
+}
+.sawtooth-shape {
+    height: 0;
+    width: 0;
+    border-bottom: 50px solid white;
+    border-right: 50px solid transparent;
+}
 
 /*Envelope*/
 .envelope-container {
