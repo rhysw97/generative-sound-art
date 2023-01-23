@@ -8,8 +8,15 @@ import Filter from '../Filter/Filter'
 
 export default function Oscillator(props: any) {
     const synth = useContext(SynthContext)
+    const [userWaveform, setUserWaveform] = useState('sine')
     const sequencerSynths = useContext(SequencerSynthsContext)
     
+    const isWaveformSelected = (value: string): boolean => userWaveform === value;
+
+    const handleRadioClick = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setUserWaveform(event?.currentTarget.value)
+        setWave(userWaveform)
+    }
     const playSound = () => {
         synth.triggerAttack(["C4", "E4", "A4"])
     }
@@ -18,8 +25,8 @@ export default function Oscillator(props: any) {
         synth.triggerRelease(["C4", "E4", "A4"])
     }
 
-    const setWave = (event : React.ChangeEvent<HTMLSelectElement>) => {
-        const { value } = event.target;
+    const setWave = (value : string) => {
+
         switch(value) {
             case 'sine':
             case 'triangle':
@@ -106,36 +113,55 @@ export default function Oscillator(props: any) {
         })
     }
 
-    
-
     return (
         <div>
             <button onClick={playSound}>Play</button>
             <button onClick={stopSound}>Stop</button>
-            <select onChange={setWave}>
-                <option value="sine">Sine</option>
-                <option value="triangle">Triangle</option>
-                <option value="square">Square</option>
-                <option value="sawtooth">Sawtooth</option>
-            </select>
-            <form className="envelope">
-                <div>
-                    <input onChange={setAttack} type="range" ></input>
-                    <label>Attack:</label>
+            
+            <div className='options'>
+                <div className="waveform-container">
+                    <h2>Select Waveform</h2>
+                    <form className='waveform-options'>
+                        <div>
+                            <input type="radio" id="sine" name="waveform" value="sine" checked={isWaveformSelected("sine")} onChange={handleRadioClick}/>
+                            <label>Sine</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="triangle" name="waveform" value="triangle" checked={isWaveformSelected("triangle")} onChange={handleRadioClick}/>
+                            <label>Triangle</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="square" name="waveform" value="square" checked={isWaveformSelected("square")} onChange={handleRadioClick}/>
+                            <label>Square</label>
+                        </div>
+                        <div>
+                            <input type="radio" id="sawtooth" name="waveform" value="sawtooth" checked={isWaveformSelected('sawtooth')} onChange={handleRadioClick}/>
+                            <label>Sawtooth</label>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <input onChange={setDecay} type="range"></input>
-                    <label>Decay</label>
+                <div className="envelope-container">
+                    <h2>ADSR Envelope</h2>
+                    <form className="envelope">
+                        <div>
+                            <input onChange={setAttack} type="range" ></input>
+                            <label>Attack</label>
+                        </div>
+                        <div>
+                            <input onChange={setDecay} type="range"></input>
+                            <label>Decay</label>
+                        </div>
+                        <div>
+                            <input onChange={setSustain} type="range" min='0' max='1' step='0.001'></input>
+                            <label>Sustain</label>
+                        </div>
+                        <div>
+                            <input onChange={setRelease} type="range" min='0' max="30" step='0.01'></input>
+                            <label>Release</label>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <input onChange={setSustain} type="range" min='0' max='1' step='0.001'></input>
-                    <label>Sustain</label>
-                </div>
-                <div>
-                    <input onChange={setRelease} type="range" min='0' max="30" step='0.01'></input>
-                    <label>Release</label>
-                </div>
-            </form>
+            </div>
             <Filter></Filter>
         </div>
     )

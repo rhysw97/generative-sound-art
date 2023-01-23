@@ -4,9 +4,9 @@ export default function sketch (p) {
     let ready = false;
 
 
-    let lfo;
+
     p.setup = () => {
-        p.createCanvas(500, 500) 
+        p.createCanvas(window.innerWidth, 600) 
 
         wave = new Tone.Waveform()
         Tone.Master.connect(wave)
@@ -34,9 +34,9 @@ export default function sketch (p) {
     
             let end = start + buffer.length;
             for (let i =start; i < end; i++) {
-                //let x1 = p.map(i - 1, start, end, 0, p.width)
+                let x1 = p.map(i - 1, start, end, 0, p.width)
                 let y1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
-                let x1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
+                //let x1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
                 let x2 = p.map(i, start, end, 0, p.width)
                 let y2 = p.map(buffer[i], -1, 1, 0, p.height)
                 p.line(x1, y1, x2, y2)

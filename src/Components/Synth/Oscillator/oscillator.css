@@ -1,8 +1,42 @@
+.options {
+    display: flex;
+    justify-content: space-between;
+}
+
+.waveform-container {
+    width: 100%;
+}
+
+/*Envelope*/
+.envelope-container {
+    background-color: rgb(66, 66, 66);
+    width: 50%;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+}
+.envelope-container h2 {
+    text-align: center;
+}
 .envelope {
     display: flex;
     flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
 }
 
+.envelope div {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+   
+    gap: 50px;
+}
+
+
+
+/*Slider*/
 input[type="range"] {
     overflow: hidden;
     width:100px;
@@ -11,33 +45,41 @@ input[type="range"] {
     appearance: none;
     background: transparent;
     cursor: pointer;
+    border: 1px solid rgb(120, 120, 120);
+    border-radius: 5px;
 }
-
 
 
 input[type=range]::-moz-range-progress {
   width: 100%;
-  height: 10px;
+  height: 100%;
   background: rgb(182, 11, 182);
-  border: none;
-  border-radius: 3px;
+  border-radius: 5px;
 }
 
+input[type=range]::-moz-range-thumb {
+    height: 100%;
+    width: 20%;
+    border-radius: 0;
+    border-radius: 5px;
+}
 
 input[type="range"]::-webkit-slider-runnable-track{
+-webkit-appearance: none;
   width: 100%;
-  height: 10px;
+  height: 20px;
   background: rgb(182, 11, 182);
   border: none;
-  border-radius: 3px;
-}
-
-.envelope div {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
+  border-radius: 5px;
 }
 
 
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 100%;
+    width: 20%;
+    border-radius: 0;
+    border-radius: 3px;
+    background: #ccc;
+}
 

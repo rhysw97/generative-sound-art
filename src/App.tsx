@@ -19,9 +19,11 @@ export const SynthContext = createContext(synth);
 function App() {
   return (
     <div className="App">
-      <ReactP5Wrapper sketch={sketch} />
+      <>
+        <ReactP5Wrapper sketch={sketch} />
+      </>
       <Oscillator></Oscillator>
-      <SequencerP sequenceLength={16} notes={["C4", "D4", "E4", "G4", "C5"]}/>
+      <Sequencer sequenceLength={16} notes={["C4", "D4", "E4", "G4", "C5"]}/>
     </div>
   );
 }
