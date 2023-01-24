@@ -11,17 +11,14 @@
   display: flex;
   justify-content: space-evenly;
   gap: 30px;
-  height: 90%;
-  vertical-align: middle;
-  
+
 }
 
 .drone-buttons p {
-  
-  background-color:rgb(182, 11, 182);
-  width: 20%;
-  height: 40%;
-}
+    background-color:rgb(182, 11, 182);
+    padding: 20px 60px;
+    border-radius: 60px;
+  }
 .options {
     display: flex;
     justify-content: space-between;
