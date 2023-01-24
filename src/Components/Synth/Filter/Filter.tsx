@@ -1,6 +1,7 @@
 import * as Tone from "tone"
 import { SynthContext, SequencerSynthsContext } from '../../../App';
 import {useContext} from 'react'
+import './filter.css'
 
 export default function Filter(props: any) {
     
@@ -33,7 +34,7 @@ export default function Filter(props: any) {
     }
     
     return(
-        <div>
+        <div className="filter">
             <select onChange={setFilterType}>
                 <option value="lowpass">Lowpass</option>
                 <option value="highpass">Highpass</option>
@@ -42,14 +43,12 @@ export default function Filter(props: any) {
                 
             </select>
 
-            <form className="filter">
-            <div>
-                <input onChange={setCutOff} type="range" min="0" max="25000" step="1" ></input>
-                <label>Frequency CutOff</label>
+            <div className="filter-sliders">
+                <div className="">
+                    <input onChange={setCutOff} type="range" min="0" max="25000" step="1" ></input>
+                    <label>Frequency CutOff</label>
+                </div>
             </div>
-               
-             
-            </form>
         </div>
     )
 }

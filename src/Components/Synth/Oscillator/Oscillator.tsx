@@ -115,8 +115,13 @@ export default function Oscillator(props: any) {
 
     return (
         <div>
-            <button onClick={playSound}>Play</button>
-            <button onClick={stopSound}>Stop</button>
+            <div className="drone-controls">
+                <h2>Drone Controls</h2>
+                <div className="drone-buttons">
+                    <p onClick={playSound}>Play</p>
+                    <p onClick={stopSound}>Stop</p>
+                </div>
+            </div>
             
             <div className='options'>
                 <div className="waveform-container">
@@ -126,28 +131,28 @@ export default function Oscillator(props: any) {
                             <h3>Sine</h3>
                             <div className="wave">
                                 <input type="radio" id="sine" name="waveform" value="sine" checked={isWaveformSelected("sine")} onChange={handleRadioClick}/>
-                                <label><div className="sine-shape"></div></label>
+                                <label htmlFor='sine' className="sine-shape background-shape"></label>
                             </div>
                         </div>
                         <div>
                             <h3>Triangle</h3>
                             <div className="wave">
                                 <input type="radio" id="triangle" name="waveform" value="triangle" checked={isWaveformSelected("triangle")} onChange={handleRadioClick}/>
-                                <label><span className='triangle-shape'></span></label>
+                                <label htmlFor='triangle' className="triangle-shape border-shape"></label>
                             </div>
                         </div>
                         <div>
                             <h3>Square</h3>
                             <div className="wave">
                                 <input type="radio" id="square" name="waveform" value="square" checked={isWaveformSelected("square")} onChange={handleRadioClick}/>
-                                <label><div className="square-shape"></div></label>
+                                <label htmlFor='square' className="square-shape background-shape"></label>
                             </div>
                         </div>
                         <div>
                             <h3>Sawtooth</h3>
                             <div className="wave">
                                 <input type="radio" id="sawtooth" name="waveform" value="sawtooth" checked={isWaveformSelected('sawtooth')} onChange={handleRadioClick}/>
-                                <label><div className='sawtooth-shape'></div></label>
+                                <label htmlFor='sawtooth' className="sawtooth-shape border-shape"></label>
                             </div>
                         </div>
                     </form>

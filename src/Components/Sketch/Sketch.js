@@ -34,12 +34,12 @@ export default function sketch (p) {
     
             let end = start + buffer.length;
             for (let i =start; i < end; i++) {
-                let x1 = p.map(i - 1, start, end, 0, p.width)
-                let y1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
-                //let x1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
+                //let x1 = p.map(i - 1, start, end, 0, p.width)
+                let y1 = p.map(buffer[i - 1], -1, p.mouseX, 0, p.height)
+                let x1 = p.map(buffer[i - 1], -1, 1, 0, p.height)
                 let x2 = p.map(i, start, end, 0, p.width)
                 let y2 = p.map(buffer[i], -1, 1, 0, p.height)
-                p.line(x1, y1, x2, y2)
+                p.line(x1, y1, x2, y2+ p.mouseX)
             }
         }
     }

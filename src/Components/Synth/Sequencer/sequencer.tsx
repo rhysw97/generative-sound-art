@@ -42,6 +42,7 @@ export default function Sequencer(props: SequencerProps) {
 
     return (
         <div className="sequencer">
+            <h2>Sequencer</h2>
             <div className="sequencer-controls">
                 <p id="playButton" onClick={() => {
                     Tone.Transport.start()
@@ -63,8 +64,6 @@ export default function Sequencer(props: SequencerProps) {
                             const tempSequence: any = [...sequence];
                             tempSequence[position[0]][position[1]] = {index: position[1] ,active: active }
                             setSequence(tempSequence)
-
-                            console.log(sequence)
                         }}
                     />)}
                 </div>)}

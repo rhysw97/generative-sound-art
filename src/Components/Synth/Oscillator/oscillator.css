@@ -1,14 +1,44 @@
+.drone-controls {
+  height: 150px;
+
+}
+
+.drone-controls h2 {
+  margin-bottom: 20px;
+}
+
+.drone-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 30px;
+  height: 90%;
+  vertical-align: middle;
+  
+}
+
+.drone-buttons p {
+  
+  background-color:rgb(182, 11, 182);
+  width: 20%;
+  height: 40%;
+}
 .options {
     display: flex;
     justify-content: space-between;
-    margin: 50px;
+    background-color: rgb(66, 66, 66);
+    margin-bottom: 40px;
+}
 
+.options div {
+  margin: 20px 0;
 }
 
 /*Waveform*/
 .waveform-container {
     width: 50%;
     background-color: rgb(66, 66, 66);
+    display: flex;
+    flex-direction: column;
 }
 
 .waveform-options {
@@ -16,7 +46,9 @@
   flex-wrap: wrap;
   justify-content: space-between;
   text-align: start;
-
+  align-items: center;
+  background-color: rgb(41, 41, 41);
+  margin: 40px 0px 40px 40px;
 }
 
 .label {
@@ -26,6 +58,11 @@
 .waveform-options div {
   flex-basis: 50%;
 }
+
+.wave {
+  display: flex;
+  justify-content: center;
+}
 .sine-shape {
     width: 50px;
     height: 50px;
@@ -33,10 +70,35 @@
     background-color: white;
 }
 
+h3 {
+  text-align: center;
+}
+
+input[type="radio"] {
+  width: 0;
+  height: 0;
+  padding: 0;
+  border: 0;
+  margin: 0;
+  flex-basis: 0;
+  visibility: hidden;
+}
+
+input[type="radio"]:checked + label.background-shape{
+  background-color: rgb(182, 11, 182);
+}
+
+input[type="radio"]:checked + label.border-shape{
+  border-bottom-color: rgb(182, 11, 182);
+}
 .triangle-shape {
-    border-bottom: 50px solid white;
-    border-right: 30px solid transparent;
-    border-left: 30px solid transparent;
+  width: 0;
+  height: 0;
+  
+  border-right: 30px solid transparent;
+  border-left: 30px solid transparent;
+  
+  border-bottom: 50px solid white;
 }
 
 .square-shape {
@@ -48,33 +110,38 @@
     height: 0;
     width: 0;
     border-bottom: 50px solid white;
-    border-right: 50px solid transparent;
+    border-left: 50px solid transparent;
 }
 
 /*Envelope*/
 .envelope-container {
     background-color: rgb(66, 66, 66);
     width: 50%;
+    flex-basis: 50%;
     display: flex;
     flex-direction: column;
 }
+
 .envelope-container h2 {
     text-align: center;
 }
+
 .envelope {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    flex-basis: 100%;
+    background-color: black;
+    margin: 40px 40px 40px 0px;
 }
 
 .envelope div {
-    margin-top: 100px;
-    display: flex;
-    flex-direction: column;
-   
-    gap: 50px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: black;
 }
 
 
