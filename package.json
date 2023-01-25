@@ -1,4 +1,5 @@
 {
+  "homepage": "http://rhysw97.github.io/generative-sound-art",
   "name": "generative-sound-art",
   "version": "0.1.0",
   "private": true,
@@ -29,6 +30,8 @@
   },
   "scripts": {
     "start": "craco start",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
@@ -52,6 +55,7 @@
     ]
   },
   "devDependencies": {
-    "@types/react-slider": "^1.3.1"
+    "@types/react-slider": "^1.3.1",
+    "gh-pages": "^5.0.0"
   }
 }

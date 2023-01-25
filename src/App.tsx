@@ -12,7 +12,16 @@ import Modal from './Components/Modal/Modal'
 const synth: Tone.PolySynth = new Tone.PolySynth();
 const  sequencerSynths = []
 for(let i = 0; i < 5; i++) {
-  sequencerSynths.push(new Tone.PolySynth());
+  const newSynth: any = new Tone.PolySynth()
+
+  newSynth.set( {
+    envelope: {
+      attack: 0.2,
+      decay: 0.4,
+      release: 0.4
+    }
+  })
+  sequencerSynths.push(newSynth);
 }
 export const SequencerSynthsContext = createContext(sequencerSynths)
 export const SynthContext = createContext(synth);

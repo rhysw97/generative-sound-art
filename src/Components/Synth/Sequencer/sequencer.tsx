@@ -45,6 +45,7 @@ export default function Sequencer(props: SequencerProps) {
             <h2>Sequencer</h2>
             <div className="sequencer-controls">
                 <p id="playButton" onClick={() => {
+                    Tone.start();
                     Tone.Transport.start()
                     Tone.Transport.bpm.value = 80;
                     Tone.Transport.scheduleRepeat(repeat, '16n')

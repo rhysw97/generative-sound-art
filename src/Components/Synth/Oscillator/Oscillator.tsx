@@ -4,6 +4,7 @@ import * as Tone from 'tone';
 import './oscillator.css'
 import { SynthContext, SequencerSynthsContext } from '../../../App';
 import Filter from '../Filter/Filter'
+import { ConstructionOutlined } from '@mui/icons-material';
 
 
 export default function Oscillator(props: any) {
@@ -14,8 +15,10 @@ export default function Oscillator(props: any) {
     const isWaveformSelected = (value: string): boolean => userWaveform === value;
 
     const handleRadioClick = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setUserWaveform(event?.currentTarget.value)
-        setWave(userWaveform)
+        setUserWaveform(event.currentTarget.value)
+        //console.log(userWaveform)
+        setWave(event.currentTarget.value)
+        //console.log(event.currentTarget.value)
     }
     const playSound = () => {
         synth.triggerAttack(["C4", "E4", "A4"])
@@ -26,7 +29,7 @@ export default function Oscillator(props: any) {
     }
 
     const setWave = (value : string) => {
-
+        console.log(value)
         switch(value) {
             case 'sine':
             case 'triangle':
@@ -55,14 +58,6 @@ export default function Oscillator(props: any) {
                 attack: event.target.value
             }
         } )
-
-        sequencerSynths.forEach(sequencerSynth => {
-            sequencerSynth.set({
-                envelope: {
-                    attack: event.target.value
-                }
-            })
-        })
     }
 
     const setDecay = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -71,14 +66,6 @@ export default function Oscillator(props: any) {
                 decay: event.target.value
             }
         } )
-
-        sequencerSynths.forEach(sequencerSynth => {
-            sequencerSynth.set({
-                envelope: {
-                    decay: event.target.value
-                }
-            })
-        })
     }
 
     const setSustain = (event : React.ChangeEvent<HTMLInputElement>) => {
@@ -104,13 +91,7 @@ export default function Oscillator(props: any) {
             }
         } )
 
-        sequencerSynths.forEach(sequencerSynth => {
-            sequencerSynth.set({
-                envelope: {
-                    release: event.target.value
-                }
-            })
-        })
+        
     }
 
     return (
