@@ -10,15 +10,25 @@
 .drone-buttons {
   display: flex;
   justify-content: space-evenly;
-  gap: 30px;
-
+ 
 }
 
 .drone-buttons p {
     background-color:rgb(182, 11, 182);
     padding: 20px 60px;
     border-radius: 60px;
+    box-shadow: 0 9px 10px rgb(0, 0, 0);
   }
+
+  .drone-buttons p:hover  {
+    box-shadow: inset 0 3px 5px #000000;
+  }
+  
+  .drone-buttons p:active  {
+
+    background-color:rgba(182, 11, 182, 0.56);
+  }
+  
 .options {
     display: flex;
     justify-content: space-between;
@@ -71,7 +81,7 @@ h3 {
   text-align: center;
 }
 
-input[type="radio"] {
+.wave input[type="radio"] {
   width: 0;
   height: 0;
   padding: 0;
@@ -81,11 +91,11 @@ input[type="radio"] {
   visibility: hidden;
 }
 
-input[type="radio"]:checked + label.background-shape{
+.wave input[type="radio"]:checked + label.background-shape{
   background-color: rgb(182, 11, 182);
 }
 
-input[type="radio"]:checked + label.border-shape{
+.wave input[type="radio"]:checked + label.border-shape{
   border-bottom-color: rgb(182, 11, 182);
 }
 .triangle-shape {

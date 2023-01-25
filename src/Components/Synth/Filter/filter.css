@@ -1,6 +1,15 @@
 .filter {
-    height: 200px;
+   display: flex;
+   justify-content: space-between;
 }
+
+
 .filter-sliders {
  
+}
+
+.cutoff {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
 }

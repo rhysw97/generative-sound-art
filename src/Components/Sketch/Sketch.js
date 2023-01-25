@@ -9,9 +9,9 @@ export default function sketch (p) {
         p.createCanvas(window.innerWidth, 600) 
 
         wave = new Tone.Waveform()
-        Tone.Master.connect(wave)
+        Tone.Destination.connect(wave)
         console.log(wave)
-        Tone.Master.volume.value = -9;
+        //Tone.Destination.volume.value = -9;
     }
 
     p.draw = () => {
