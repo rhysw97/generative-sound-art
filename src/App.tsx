@@ -6,7 +6,7 @@ import './App.css';
 import {ReactP5Wrapper} from 'react-p5-wrapper'
 import sketch from './Components/Sketch/Sketch';
 import Sequencer from './Components/Synth/Sequencer/sequencer';
-
+import Modal from './Components/Modal/Modal'
 
 
 const synth: Tone.PolySynth = new Tone.PolySynth();
@@ -17,8 +17,12 @@ for(let i = 0; i < 5; i++) {
 export const SequencerSynthsContext = createContext(sequencerSynths)
 export const SynthContext = createContext(synth);
 function App() {
+
+  const [modalActive, setModalActive] = useState(false);
   return (
     <div className="App">
+      <p className="open-modal" onClick={() => setModalActive(true)}>Instructions</p>
+      <Modal show={modalActive} close={()=> setModalActive(false)}/>
       <>
         <ReactP5Wrapper sketch={sketch} />
       </>
