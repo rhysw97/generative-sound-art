@@ -1,6 +1,6 @@
 .drone-controls {
-  height: 150px;
-
+  height: 200px;
+  padding-top: 10px;
 }
 
 .drone-controls h2 {

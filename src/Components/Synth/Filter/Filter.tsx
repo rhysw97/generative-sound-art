@@ -63,10 +63,11 @@ export default function Filter(props: any) {
                 </div>            
             </div>
 
-            <div className="filter-sliders">
+            <div className="filter-sliders-container">
+                <h2>Filter Settings</h2>
                 <div className="cutoff">
                     <input onChange={setCutOff} type="range" min="0" max="25000" step="1" ></input>
-                    <label>Frequency CutOff</label>
+                    <label>CutOff</label>
                 </div>
             </div>
         </div>
